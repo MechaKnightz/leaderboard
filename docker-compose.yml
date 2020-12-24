@@ -1,10 +1,18 @@
-version: "3"
+version: "3.9"
 services:
   db:
-    image: mariadb
+    container_name: mysql
+    build: ./db
+    command: 
+      --default-authentication-plugin=mysql_native_password
+      #--init-file /init.sql
     restart: always
+    volumes:
+      - dbdata:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: dev
+      MYSQL_DATABASE: default
+      MYSQL_PASSWORD: dev
+      MYSQL_USER: dev
 
   frontend-server:
     build: ./client
@@ -17,3 +25,5 @@ services:
     container_name: server
     ports:
       - 4000:4000
+volumes:
+  dbdata:
