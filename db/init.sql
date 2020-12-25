@@ -1,2 +1,2 @@
 create database dev;
-use database dev;
+use dev;
