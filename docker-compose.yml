@@ -9,34 +9,41 @@ services:
     volumes:
       - dbdata:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: ${DB_PASS}
-      MYSQL_PASSWORD: ${DB_PASS}
-      MYSQL_USER: ${DB_USER}
+      MYSQL_ROOT_PASSWORD: "${DB_PASS}"
+      MYSQL_PASSWORD: "${DB_PASS}"
+      MYSQL_USER: "${DB_USER}"
 
   frontend-server:
-    build: ./client
+    build:
+      context: ./client
+      args:
+        RUN_COMMAND: "${RUN_COMMAND}"
     container_name: client
     ports:
       - 3000:3000
     environment:
-      RUN_COMMAND: ${RUN_COMMAND} 
-      AUTH0_DOMAIN: ${AUTH0_DOMAIN} 
-      AUTH0_CLIENT_ID: ${AUTH0_CLIENT_ID} 
+      REACT_APP_AUTH0_DOMAIN: "${AUTH0_DOMAIN}"
+      REACT_APP_AUTH0_CLIENT_ID: "${AUTH0_CLIENT_ID}"
+      #on windows
+      CHOKIDAR_USEPOLLING: "true"
     volumes:
       #only on dev
-      - /client/src:/src
+      - ./client/src:/src
   backend-server:
     build: ./server
     container_name: server
     ports:
       - 4000:4000
     environment:
-      DB_PASS: ${DB_PASS}
-      DB_USER: ${DB_USER}
-      DB_HOST: ${DB_HOST}
-      DB_NAME: ${DB_NAME}
+      DB_PASS: "${DB_PASS}"
+      DB_USER: "${DB_USER}"
+      DB_HOST: "${DB_HOST}"
+      DB_NAME: "${DB_NAME}"
+      AUTH0_DOMAIN: "${AUTH0_DOMAIN}"
+      AUTH0_CLIENT_ID: "${AUTH0_CLIENT_ID}"
+      AUTH0_AUDIENCE: "${AUTH0_AUDIENCE}"
     volumes:
       #only on dev
-      -  /server/src:/src
+      -  ./server/src:/src
 volumes:
   dbdata:

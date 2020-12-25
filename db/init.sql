@@ -1,2 +1,2 @@
-create database dev;
-use dev;
+create database speedrun;
+use speedrun;
