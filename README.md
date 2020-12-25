@@ -6,5 +6,5 @@
 `docker-compose up`
 
 ## Production: 
-Put credentials in `docker-compose.prod.yml`
-`docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d`
+Fill credentials in `.env.prod`
+`docker-compose --env-file .env.prod up`

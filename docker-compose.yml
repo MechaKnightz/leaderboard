@@ -5,25 +5,30 @@ services:
     build: ./db
     command: 
       --default-authentication-plugin=mysql_native_password
-      #--init-file /init.sql
     restart: always
     volumes:
       - dbdata:/var/lib/mysql
     environment:
-      MYSQL_DATABASE: default
-      MYSQL_PASSWORD: dev
-      MYSQL_USER: dev
+      MYSQL_PASSWORD: ${DB_PASS}
+      MYSQL_USER: ${DB_USER}
 
   frontend-server:
     build: ./client
     container_name: client
     ports:
       - 3000:3000
+    environment:
+      RUN_COMMAND: ${RUN_COMMAND}
 
   backend-server:
     build: ./server
     container_name: server
     ports:
       - 4000:4000
+    environment:
+      DB_PASS: ${DB_PASS}
+      DB_USER: ${DB_USER}
+      DB_HOST: ${DB_HOST}
+      DB_NAME: ${DB_NAME}
 volumes:
   dbdata:
