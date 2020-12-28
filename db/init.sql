@@ -1,5 +1,5 @@
-create database speedrun;
-use speedrun;
+use speedrun; 
+/* replace this with DB_DATABASE environmental variable, with script maybe? */
 
 CREATE TABLE speedruns (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT 'id',
