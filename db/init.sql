@@ -1,6 +1,5 @@
-use speedrun; 
+use speedrun;
 /* replace this with DB_DATABASE environmental variable, with script maybe? */
-
 CREATE TABLE speedruns (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT 'id',
   `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -18,7 +17,6 @@ CREATE TABLE speedruns (
   ) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
-
 INSERT INTO `speedruns` (
     `time`,
     `description`,
@@ -26,8 +24,56 @@ INSERT INTO `speedruns` (
     `type`
   )
 VALUES (
-    '30000',
+    '42131',
     'best run ever',
     'youtube.com',
     'ANY_PERCENT'
+  );
+INSERT INTO `speedruns` (
+    `time`,
+    `description`,
+    `url`,
+    `type`
   )
+VALUES (
+    '51232',
+    'best run ever',
+    'youtube.com',
+    'ANY_PERCENT'
+  );
+INSERT INTO `speedruns` (
+    `time`,
+    `description`,
+    `url`,
+    `type`
+  )
+VALUES (
+    '123',
+    'best run ever',
+    'youtube.com',
+    'VM_PERCENT'
+  );
+INSERT INTO `speedruns` (
+    `time`,
+    `description`,
+    `url`,
+    `type`
+  )
+VALUES (
+    '51232',
+    'best run ever',
+    'youtube.com',
+    'VM_PERCENT'
+  );
+INSERT INTO `speedruns` (
+    `time`,
+    `description`,
+    `url`,
+    `type`
+  )
+VALUES (
+    '21341',
+    'best run ever',
+    'youtube.com',
+    'FULL_GAME_GLITCHLESS'
+  );
