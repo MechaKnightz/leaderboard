@@ -5,7 +5,7 @@ services:
     build: ./db
     command: 
       --default-authentication-plugin=mysql_native_password
-    restart: always
+    #restart: always
     volumes:
       - dbdata:/var/lib/mysql
     environment:
@@ -44,8 +44,13 @@ services:
       DB_HOST: "${DB_HOST}"
       DB_NAME: "${DB_NAME}"
       AUTH0_DOMAIN: "${AUTH0_DOMAIN}"
-      AUTH0_CLIENT_ID: "${AUTH0_CLIENT_ID}"
+      AUTH0_CLIENT_ID: "${AUTH0_BACKEND_CLIENT_ID}"
       AUTH0_AUDIENCE: "${AUTH0_AUDIENCE}"
+      APOLLO_KEY: "${APOLLO_KEY}"
+      APOLLO_GRAPH_VARIANT: "${APOLLO_GRAPH_VARIANT}"
+      APOLLO_SCHEMA_REPORTING: "${APOLLO_SCHEMA_REPORTING}"
+      AUTH0_BACKEND_CLIENT_SECRET: "${AUTH0_BACKEND_CLIENT_SECRET}"
+      AUTH0_MANAGEMENT_AUDIENCE: "${AUTH0_MANAGEMENT_AUDIENCE}"
     volumes:
       #only on dev
       -  ./server/src:/src
