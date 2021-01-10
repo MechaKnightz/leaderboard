@@ -15,6 +15,11 @@ CREATE TABLE `Speedruns` (
     'DEATH_PERCENT',
     'NO_BOAT'
   ) NOT NULL,
+  `Status` ENUM(
+    'UNVERIFIED',
+    'VERIFIED',
+    'DECLINED'
+    ) DEFAULT 'UNVERIFIED',
   `SubmitterID` INT NOT NULL REFERENCES `Users` (`UserID`),
   `VerifierID` INT NULL REFERENCES `Users` (`UserID`),
   PRIMARY KEY (`SpeedrunID`, `SubmitterID`)
